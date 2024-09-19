@@ -1,8 +1,6 @@
 import mysql.connector
 
-
-
-class personDa:
+class productDa:
 
 	def connect(self):
 		self.connection = mysql.connector.connect(host="localhost", user="root", password="root123", database="mft")
@@ -14,17 +12,18 @@ class personDa:
 		self.cursor.close()
 		self.connection.close()
 
-	def save(self, person):
+	def save(self, product):
 		self.connect()
 		#todo : complete sql command and parameters
-		self.cursor.execute("insert into car_tbl (id,name,family) values (%s,%S,%s)",
-							[person.id,person.name,person.famiLy])
+		self.cursor.execute("insert into car_tbl (id,name,brand, model,price) values (%s,%s,%s,%s,%s)",
+							[product.id,product.name,product.brand,product. model,product.price])
 		self.disconnect(commit = True)
 
-	def edit(self, person):
+	def edit(self, product):
 		self.connect()
 		#todo : complete sql command and parameters
-		self.cursor.execute("update car_tbl set name=%S,family=%s   where id=%s",[person.name,person.famiLy,person.id])
+		self.cursor.execute("update car_tbl set name=%s,brand=%s, model=%s,price=%s    where id=%s",
+							[product.name,product.brand,product. model,product.price,product.id])
 		self.disconnect(commit = True)
 
 	def remove(self, id):
@@ -35,16 +34,16 @@ class personDa:
 	def find_all(self):
 		self.connect()
 		self.cursor.execute("select * from car_tbl ")
-		person_list = [person(*person) for person in self.cursor.fetchall()]
+		product_list = [product(*product) for product in self.cursor.fetchall()]
 		self.disconnect()
-		if person_list:
-			return person_list
+		if product_list:
+			return product_list
 
 	def find_by_id(self, id):
 		self.connect()
 		self.cursor.execute("select * from car_tbl where id=%s", [id])
-		person = self.cursor.fetchone()
+		product = self.cursor.fetchone()
 		self.disconnect()
-		if person:
-			return person(*person)
+		if product:
+			return product(*product)
 
