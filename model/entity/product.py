@@ -1,5 +1,8 @@
 import re
 
+from tools.validator import Validator
+
+
 # id, name,brand, model, price
 class Product:
     def __int__(self,id,name,brand, model,price):
@@ -9,16 +12,13 @@ class Product:
         self.model = model
         self.price = price
 
-        # id
         @property
         def id(self):
             return self._id
 
         @id.setter
         def id(self, value):
-            if re.match(r"^[0-9]{1,}$", value):
-                self._id = value
-
+            self._id = Validator.id_validator(id, "Invalid Id")
        #name
         @property
         def name(self):

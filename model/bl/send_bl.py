@@ -1,4 +1,4 @@
-from model.da.send_da import sendDa
+from model.da.send_da import SendDa
 from model.entity.product import Product
 
 
@@ -16,11 +16,11 @@ class SendBl:
 
     @staticmethod
     def remove(send):
-        sell_da = sendDa()
+        sell_da = SendDa()
         return sell_da.remove(send)
 
     @staticmethod
     def find_all(send):
-        send_da = sendDa()
+        send_da = SendDa()
         return send_da.find_all(send)
 

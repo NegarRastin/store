@@ -1,56 +1,68 @@
 import re
+
+from tools.validator import Validator
+
+
 class Send:
-	def __init__(self, product, quantity, customer, phone_number, address):
-		self.product = product
-		self.quantity = quantity
-		self.customer = customer
-		self.phone_number = phone_number
-		self.address = address
+    def __init__(self, id, product, quantity, customer, phone_number, address):
+        self.id = id
+        self.product = product
+        self.quantity = quantity
+        self.customer = customer
+        self.phone_number = phone_number
+        self.address = address
 
-	@property
-	def product(self):
-		return self._product
+    # id
+    @property
+    def id(self):
+        return self._id
 
-	@product.setter
-	def product(self, product):
-		if re.match(r"^[a-zA-Z\s]{3,30}$", product):
-			self._product = product
+    @id.setter
+    def id(self, value):
+        self._id = Validator.id_validator(id, "Invalid Id")
 
-	@property
-	def quantity(self):
-		return self._quantity
+    @property
+    def product(self):
+        return self._product
 
-	@quantity.setter
-	def quantity(self, quantity):
-		if re.match(r"^[0-9]{1,}$", quantity):
-			self._quantity = quantity
+    @product.setter
+    def product(self, product):
+        self._product = product
 
-	@property
-	def customer(self):
-		return self._customer
+    @property
+    def quantity(self):
+        return self._quantity
 
-	@customer.setter
-	def customer(self, customer):
-		if re.match(r"^[a-zA-Z\s]{3,30}$", customer):
-			self._customer = customer
+    @quantity.setter
+    def quantity(self, quantity):
+        if re.match(r"^[0-9]{1,}$", quantity):
+            self._quantity = quantity
 
-	@property
-	def phone_number(self):
-		return self._phone_number
+    @property
+    def customer(self):
+        return self._customer
 
-	@phone_number.setter
-	def phone_number(self, phone_number):
-		if re.match(r"^(\+989\d{9}|09\d{9})$",phone_number):
-			self._phone_number = phone_number
+    @customer.setter
+    def customer(self, customer):
+        self._customer = customer
 
-	@property
-	def address(self):
-		return self._address
+    @property
+    def phone_number(self):
+        return self._phone_number
 
-	@address.setter
-	def address(self, address):
-		if re.match(r"[a-zA-z0-9,\-\s]{3,30}", address):
-			self._address = address
+    @phone_number.setter
+    def phone_number(self, phone_number):
+        if re.match(r"^(\+989\d{9}|09\d{9})$", phone_number):
+            self._phone_number = phone_number
 
-	def __repr__(self):
-		return f"{self.__dict__}"
+    @property
+    def address(self):
+        return self._address
+
+    @address.setter
+    def address(self, address):
+        if re.match(r"[a-zA-z0-9,\-\s]{3,30}", address):
+            self._address = address
+
+    def __repr__(self):
+        return f"{self.__dict__}"

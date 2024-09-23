@@ -1,9 +1,9 @@
 from model.entity.send import Send
-from model.da.send_da  import sendDa
+from model.da.send_da  import SendDa
 
 
 class sendController:
-    send_da = sendDa()
+    send_da = SendDa()
 
     @classmethod
     def save(cls, product, quantity, customer, phone_number, address):
