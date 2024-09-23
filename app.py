@@ -1,4 +1,4 @@
-from view.person_view import PersonView
+from view.customer_view import CustomerView
 
 
-ui = PersonView()
+ui = CustomerView()

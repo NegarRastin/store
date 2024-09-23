@@ -1,48 +1,36 @@
-
 from model.entity.customer import Customer
-from model.da.customer_da import customerDa
+from model.da.customer_da import CustomerDa
+from tools import exception_handling
 
 
-class customerController:
-    customer_da = customerDa()
-
-    @classmethod
-    def save(cls, id, name, family, national_code, phone_number):
-        try:
-            customer = Customer(id, name, family, national_code, phone_number)
-            cls.customer_da.save(customer)
-            return True, f"Customer {national_code} Saved"
-        except Exception as e:
-            return False, str(e)
+class CustomerController:
+    customer_da = CustomerDa()
 
     @classmethod
-    def edit(cls,id, name, family, national_code, phone_number ):
-        try:
-            customer = Customer(id, name, family, national_code, phone_number)
-            cls.customer_da.edit(customer)
-            return True, f"Customer {national_code} Edited"
-        except Exception as e:
-            return False, str(e)
+    @exception_handling
+    def save(cls, name, family, national_code, phone_number):
+        customer = Customer(0, name, family, national_code, phone_number)
+        cls.customer_da.save(customer)
+        return True, f"Customer {national_code} Saved"
 
     @classmethod
-    def remove(cls, national_code):
-        try:
-            cls.customer_da.remove(national_code)
-            return True, f"Customer {national_code} Removed"
-        except Exception as e:
-            return False, str(e)
+    @exception_handling
+    def edit(cls, id, name, family, national_code, phone_number):
+        customer = Customer(id, name, family, national_code, phone_number)
+        cls.customer_da.edit(customer)
+        return True, f"Customer {national_code} Edited"
 
     @classmethod
+    @exception_handling
+    def remove(cls, id):
+        cls.customer_da.remove(id)
+
+    @classmethod
+    @exception_handling
     def find_all(cls):
-        try:
-            return True, cls.customer_da.find_all()
-        except Exception as e:
-            return False, str(e)
+        return True, cls.customer_da.find_all()
 
     @classmethod
+    @exception_handling
     def find_by_id(cls, id):
-        try:
-            return True, cls.customer_da.find_by_id(id)
-        except Exception as e:
-            return False, str(e)
-
+        return True, cls.customer_da.find_by_id(id)

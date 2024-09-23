@@ -8,3 +8,11 @@ create table mft.customer_tbl
     national_code varchar(10),
     phone_number  varchar(11)
 );
+
+
+create table warehouse
+(
+    id         int primary key auto_increment,
+    product_id int,
+    inventory  int
+);

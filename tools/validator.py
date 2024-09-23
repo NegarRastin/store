@@ -20,11 +20,10 @@ class Validator:
 
     @classmethod
     def id_validator(cls, id, message):
-        if re.match(r"^[0-9]{1,}$", id):
+        if type(id) == int and id >= 0:
             return id
         else:
             raise ValueError(message)
-
 
 
     @classmethod
