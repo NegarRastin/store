@@ -10,21 +10,21 @@ class Customer(Person):
         self. phone_number=phone_number
 
 
-        @property
-        def national_code(self):
-               return self._national_code
+    @property
+    def national_code(self):
+           return self._national_code
 
-        @national_code.setter
-        def national_code(self, value):
-               if re.match(r"^[0-9/_]{10,12}$",value):
-                  self._national_code=value
-        @property
-        def phone_number(self):
-            return self._phone_number
+    @national_code.setter
+    def national_code(self, value):
+           if re.match(r"^[0-9/_]{10,12}$",value):
+              self._national_code=value
+    @property
+    def phone_number(self):
+        return self._phone_number
 
-        @phone_number.setter
-        def phone_number(self, value):
-               if re.match(r"^(\+989\d{9}|09\d{9})$", value):
-                  self._phone_number=value
-        def __repr__(self):
-            return f"{self.__dict__}"
+    @phone_number.setter
+    def phone_number(self, value):
+           if re.match(r"^(\+989\d{9}|09\d{9})$", value):
+              self._phone_number=value
+    def __repr__(self):
+        return f"{self.__dict__}"
