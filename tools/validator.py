@@ -69,19 +69,21 @@ class Validator:
         else:
             raise ValueError(message)
 
-
+    @classmethod
     def product_validator(cls, product, message):
         if re.match(r"^[a-zA-Z\s]{3,30}$", product):
             return product
         else:
             raise ValueError(message)
 
+    @classmethod
     def quantity_validator(cls, quantity, message):
         if re.match(r"^[0-9]{1,}$", quantity):
             return quantity
         else:
             raise ValueError(message)
 
+    @classmethod
     def address_validator(cls, address, message):
         if re.match(r"[a-zA-z0-9,\-\s]{3,30}", address):
             return address
